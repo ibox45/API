@@ -12,6 +12,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.*;
 import static org.junit.Assert.assertEquals;
 
+
 public class Post02 extends HerOkuAppBaseUrl {
 
     /*
@@ -63,12 +64,13 @@ public class Post02 extends HerOkuAppBaseUrl {
 
         //4. Step: Do Assertion
         Map<String,Object> actualDataMap = response.as(HashMap.class);
+        assertEquals(200,response.statusCode());
         assertEquals(expectedDataMap.get("firstname"),((Map)actualDataMap.get("booking")).get("firstname"));
         assertEquals(expectedDataMap.get("lastname"),((Map)actualDataMap.get("booking")).get("lastname"));
         assertEquals(expectedDataMap.get("totalprice"),((Map)actualDataMap.get("booking")).get("totalprice"));
         assertEquals(expectedDataMap.get("depositpaid"),((Map)actualDataMap.get("booking")).get("depositpaid"));
         assertEquals(bookingdatesMap.get("checkin"),((Map)((Map)actualDataMap.get("booking")).get("bookingdates")).get("checkin"));
-        assertEquals(bookingdatesMap.get("checkout"),((Map)((Map)actualDataMap.get("booking")).get("bookingdates")).get("checkout"));
+        assertEquals(bookingdatesMap.get("checkout"), ((Map)((Map)actualDataMap.get("booking")).get("bookingdates")).get("checkout"));
 
 
 
